@@ -93,19 +93,19 @@ class Gallery(Cog):
             return
         if message.channel.id not in await self.config.guild(message.guild).channels():
             return
-        if not message.attachments:
-            uris = re.findall(
-                "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+",
-                message.content,
-            )
-            if len(uris) == 1:
-                uri = "".join(uris)
-                uri = uri.split("?")[0]
-                parts = uri.split(".")
-                extension = parts[-1]
-                imageTypes = ["jpg", "jpeg", "tiff", "png", "gif", "bmp"]
-                if extension in imageTypes:
-                    return
+        if not message.pinned:
+#            uris = re.findall(
+#                "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+",
+#                message.content,
+#            )
+#            if len(uris) == 1:
+#                uri = "".join(uris)
+#                uri = uri.split("?")[0]
+#                parts = uri.split(".")
+#                extension = parts[-1]
+#                imageTypes = ["jpg", "jpeg", "tiff", "png", "gif", "bmp"]
+#                if extension in imageTypes:
+#                    return
             rid = await self.config.guild(message.guild).whitelist()
             time = await self.config.guild(message.guild).time()
             if rid is not None:
